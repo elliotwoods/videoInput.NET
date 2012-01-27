@@ -7,13 +7,37 @@ using namespace System;
 
 namespace VideoInputSharp {
 
+	public enum class Property {
+		None,
+
+		Brightness,
+		Contrast,
+		Hue,
+		Saturation,
+		Sharpness,
+		Gamma,
+		ColorEnable,
+		WhiteBalance,
+		BacklightCompensation,
+		Gain,
+
+		Pan,
+		Tilt,
+		Roll,
+		Zoom,
+		Exposure,
+		Iris,
+		Focus
+	};
+
 	public ref class Capture
 	{
 	public:
 		Capture();
 		static array<String^>^ ListDevices();
 
-		void	Open(int DeviceID, int Framerate, int Width, int Height);
+		/// returns true is succesful
+		bool	Open(int DeviceID, int Framerate, int Width, int Height);
 		void	Close();
 
 		int		GetWidth();
@@ -21,6 +45,8 @@ namespace VideoInputSharp {
 		
 		void	GetPixels(void* data);
 		void	ShowSettings();
+		/// Value is normalised 0.0f->1.0f
+		void	SetProperty(Property Property, float Value);
 
 	protected:
 		videoInput*	capture;
