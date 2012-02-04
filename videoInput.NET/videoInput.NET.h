@@ -44,9 +44,13 @@ namespace VideoInputSharp {
 		int		GetHeight();
 		
 		void	GetPixels(void* data);
+		void	GetPixels(IntPtr data);
 		void	ShowSettings();
 		/// Value is normalised 0.0f->1.0f
 		void	SetProperty(Property Property, float Value);
+
+		void	SetInvertY(bool invertY);
+		void	SetSwapRGB(bool swapRGB);
 
 	protected:
 		videoInput*	capture;
@@ -60,5 +64,7 @@ namespace VideoInputSharp {
 		int		actualHeight;
 		unsigned int actualSize;
 
+		bool	swapRGB;
+		bool	invertY;
 	};
 }

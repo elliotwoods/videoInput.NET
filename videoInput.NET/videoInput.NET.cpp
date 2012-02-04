@@ -10,6 +10,8 @@ namespace VideoInputSharp {
 	{
 		capture = new videoInput();
 		initialised = false;
+		swapRGB = false;
+		invertY = true;
 	}
 
 	array<String^>^ Capture::ListDevices()
@@ -76,7 +78,12 @@ namespace VideoInputSharp {
 	{
 		if (!initialised)
 			return;
-		capture->getPixels(deviceID, (unsigned char *)data, false, true);
+		capture->getPixels(deviceID, (unsigned char *)data, swapRGB, invertY);
+	}
+
+	void Capture::GetPixels(IntPtr data)
+	{
+		this->GetPixels(data.ToPointer());
 	}
 
 	void Capture::ShowSettings()
@@ -196,5 +203,13 @@ namespace VideoInputSharp {
 			capture->setVideoSettingFilterPct(deviceID, videoInputProperty, Value);
 		else
 			capture->setVideoSettingCameraPct(deviceID, videoInputProperty, Value);
+	}
+
+	void Capture::SetInvertY(bool invertY) {
+		this->invertY = invertY;
+	}
+
+	void Capture::SetSwapRGB(bool swapRGB) {
+		this->swapRGB = swapRGB;
 	}
 }
