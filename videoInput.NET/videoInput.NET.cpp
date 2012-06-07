@@ -37,9 +37,6 @@ namespace VideoInputSharp {
 
 			requestedWidth = Width;
 			requestedHeight = Height;
-			actualWidth = capture->getWidth(deviceID);
-			actualHeight = capture->getHeight(deviceID);
-			actualSize = capture->getSize(deviceID);
 			initialised = true;
 			return true;
 		}
@@ -63,7 +60,7 @@ namespace VideoInputSharp {
 		if (!initialised)
 			return 0;
 		else
-			return actualWidth;
+			return capture->getWidth(deviceID);
 	}
 
 	int Capture::GetHeight()
@@ -71,7 +68,7 @@ namespace VideoInputSharp {
 		if (!initialised)
 			return 0;
 		else
-			return actualHeight;
+			return capture->getHeight(deviceID);
 	}
 
 	void Capture::GetPixels(void* data)

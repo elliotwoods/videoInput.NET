@@ -60,9 +60,6 @@ namespace VideoInputSharp {
 
 		int		requestedWidth;
 		int		requestedHeight;
-		int		actualWidth;
-		int		actualHeight;
-		unsigned int actualSize;
 
 		bool	swapRGB;
 		bool	invertY;
